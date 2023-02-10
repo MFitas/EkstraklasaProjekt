@@ -1,40 +1,40 @@
 package com.example.Ekstraklasa.Projekt.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Kolejka
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int KolejkaId;
+    private int Id;
 
-    private int matchId;
+    @OneToMany
+    private List<Match> matches;
 
     public Kolejka() {
     }
 
-    public Kolejka(int kolejkaId, int matchId) {
-        KolejkaId = kolejkaId;
-        this.matchId = matchId;
+    public Kolejka(int id, List<Match> matches) {
+        Id = id;
+        this.matches = matches;
     }
 
-    public int getKolejkaId() {
-        return KolejkaId;
+    public int getId() {
+        return Id;
     }
 
-    public void setKolejkaId(int kolejkaId) {
-        KolejkaId = kolejkaId;
+    public void setId(int id) {
+        Id = id;
     }
 
-    public int getMatchId() {
-        return matchId;
+    public List<Match> getMatches() {
+        return matches;
     }
 
-    public void setMatchId(int matchId) {
-        this.matchId = matchId;
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
     }
 }

@@ -1,48 +1,28 @@
 package com.example.Ekstraklasa.Projekt.Models;
 
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-public class Team
+public class EkstraklasaTable
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String name;
-    private int wins;
-    private int draws;
-    private int loses;
-    private int goalsScored;
-    private int goalsAgainst;
+    public String name;
+    public int wins;
+    public int matchCount;
+    public int draws;
+    public int loses;
+    public int goalsScored;
+    public int goalsAgainst;
+    public int points;
 
-    @ManyToMany
-    private List<Player> players;
+    public EkstraklasaTable() {
+    }
 
-    @ManyToMany
-    private List<Match> matches;
-
-    public Team() { }
-
-    public Team(int id, String name, int wins, int draws, int loses, int goalsScored, int goalsAgainst, List<Player> players, List<Match> matches) {
-        this.id = id;
+    public EkstraklasaTable(String name, int wins, int matchCount, int draws, int loses, int goalsScored, int goalsAgainst, int points) {
         this.name = name;
         this.wins = wins;
+        this.matchCount = matchCount;
         this.draws = draws;
         this.loses = loses;
         this.goalsScored = goalsScored;
         this.goalsAgainst = goalsAgainst;
-        this.players = players;
-        this.matches = matches;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.points = points;
     }
 
     public String getName() {
@@ -59,6 +39,14 @@ public class Team
 
     public void setWins(int wins) {
         this.wins = wins;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public void setMatchCount(int matchCount) {
+        this.matchCount = matchCount;
     }
 
     public int getDraws() {
@@ -93,19 +81,11 @@ public class Team
         this.goalsAgainst = goalsAgainst;
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public int getPoints() {
+        return points;
     }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
-    public List<Match> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

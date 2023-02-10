@@ -3,13 +3,14 @@ package com.example.Ekstraklasa.Projekt.Models;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Match
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int MatchId;
+    private int Id;
 
     private int HomeTeamId;
     private int AwayTeamId;
@@ -20,24 +21,41 @@ public class Match
     @ManyToOne
     private Kolejka kolejka;
 
+    @ManyToMany
+    private List<Player> players;
+
+    @ManyToMany
+    private List<Team> teams;
+
     public Match() {
     }
 
-    public Match(int matchId, int homeTeamId, int awayTeamId, int homeGoals, int awayGoals, Date matchDate) {
-        MatchId = matchId;
+    public Match(int id, int homeTeamId, int awayTeamId, int homeGoals, int awayGoals, Date matchDate, Kolejka kolejka, List<Player> players, List<Team> teams) {
+        Id = id;
         HomeTeamId = homeTeamId;
         AwayTeamId = awayTeamId;
         HomeGoals = homeGoals;
         AwayGoals = awayGoals;
         MatchDate = matchDate;
+        this.kolejka = kolejka;
+        this.players = players;
+        this.teams = teams;
     }
 
-    public int getMatchId() {
-        return MatchId;
+    public List<Team> getTeams() {
+        return teams;
     }
 
-    public void setMatchId(int matchId) {
-        MatchId = matchId;
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 
     public int getHomeTeamId() {
@@ -80,4 +98,19 @@ public class Match
         MatchDate = matchDate;
     }
 
+    public Kolejka getKolejka() {
+        return kolejka;
+    }
+
+    public void setKolejka(Kolejka kolejka) {
+        this.kolejka = kolejka;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 }

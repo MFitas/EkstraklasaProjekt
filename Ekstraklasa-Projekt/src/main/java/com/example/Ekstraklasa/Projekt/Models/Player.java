@@ -1,37 +1,41 @@
 package com.example.Ekstraklasa.Projekt.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Player
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int PlayerId;
+    private int Id;
 
     private String Name;
     private String Surname;
-    private int TeamId;
+
+    @ManyToOne
+    private Team team;
+
+    @ManyToMany
+    private List<Match> matches;
 
     public Player() {
     }
 
-    public Player(int playerId, String name, String surname, int teamId) {
-        PlayerId = playerId;
+    public Player(String name, String surname, Team team, List<Match> matches) {
         Name = name;
         Surname = surname;
-        TeamId = teamId;
+        this.team = team;
+        this.matches = matches;
     }
 
-    public int getPlayerId() {
-        return PlayerId;
+    public int getId() {
+        return Id;
     }
 
-    public void setPlayerId(int playerId) {
-        PlayerId = playerId;
+    public void setId(int id) {
+        Id = id;
     }
 
     public String getName() {
@@ -50,12 +54,20 @@ public class Player
         Surname = surname;
     }
 
-    public int getTeamId() {
-        return TeamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(int teamId) {
-        TeamId = teamId;
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
     }
 }
 

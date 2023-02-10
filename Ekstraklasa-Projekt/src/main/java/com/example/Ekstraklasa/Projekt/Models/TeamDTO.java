@@ -1,15 +1,7 @@
 package com.example.Ekstraklasa.Projekt.Models;
 
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-public class Team
+public class TeamDTO
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
     private String name;
     private int wins;
     private int draws;
@@ -17,32 +9,16 @@ public class Team
     private int goalsScored;
     private int goalsAgainst;
 
-    @ManyToMany
-    private List<Player> players;
+    public TeamDTO() {
+    }
 
-    @ManyToMany
-    private List<Match> matches;
-
-    public Team() { }
-
-    public Team(int id, String name, int wins, int draws, int loses, int goalsScored, int goalsAgainst, List<Player> players, List<Match> matches) {
-        this.id = id;
+    public TeamDTO(String name, int wins, int draws, int loses, int goalsScored, int goalsAgainst) {
         this.name = name;
         this.wins = wins;
         this.draws = draws;
         this.loses = loses;
         this.goalsScored = goalsScored;
         this.goalsAgainst = goalsAgainst;
-        this.players = players;
-        this.matches = matches;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -91,21 +67,5 @@ public class Team
 
     public void setGoalsAgainst(int goalsAgainst) {
         this.goalsAgainst = goalsAgainst;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
-    public List<Match> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
     }
 }
